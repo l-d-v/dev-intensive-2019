@@ -66,17 +66,15 @@ object Utils {
 	}
 
 	fun toInitials(firstName: String?, lastName: String?): String? {
-		val regex = Regex(pattern = """\w+""")
-		val trimFN = regex.find(input = firstName ?: "")?.value ?: ""
-		val trimLN = regex.find(input = lastName ?: "")?.value ?: ""
+		val trimF = firstName?.trim() ?: ""
+		val trimL = lastName?.trim() ?: ""
 
-		val initials =
-			"${
-			if (trimFN.isNotEmpty()) trimFN[0].toUpperCase() else ""
-			}${
-			if (trimLN.isNotEmpty()) trimLN[0].toUpperCase() else ""
-			}"
+		val result = "${
+			if (trimF.isNotEmpty()) trimF[0].toUpperCase() else ""
+		}${
+			if (trimL.isNotEmpty()) trimL[0].toUpperCase() else ""
+		}"
 
-		return if (initials.isNotEmpty()) initials else null
+		return if (result.isNotEmpty()) result else null
 	}
 }
