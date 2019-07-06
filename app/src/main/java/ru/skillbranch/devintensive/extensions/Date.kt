@@ -76,5 +76,38 @@ enum class TimeUnits {
 	SECOND,
 	MINUTE,
 	HOUR,
-	DAY
+	DAY;
+
+	fun plural(value: Int): String {
+		return when (this) {
+			SECOND -> "$value секунд${
+				when (value.rem(10)) {
+					1 -> "а"
+					in 2..4 -> "ы"
+					else -> ""
+				}
+			}"
+			MINUTE -> "$value минут${
+				when (value.rem(10)) {
+					1 -> "а"
+					in 2..4 -> "ы"
+					else -> ""
+				}
+			}"
+			HOUR -> "$value час${
+				when (value.rem(10)) {
+					1 -> ""
+					in 2..4 -> "а"
+					else -> "ов"
+				}
+			}"
+			DAY -> "$value д${
+				when (value.rem(10)) {
+					1 -> "ень"
+					in 2..4 -> "ня"
+					else -> "ней"
+				}
+			}"
+		}
+	}
 }
