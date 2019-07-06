@@ -82,14 +82,14 @@ enum class TimeUnits {
 		return when (this) {
 			SECOND -> "$value секунд${
 				when (value.rem(10)) {
-					1 -> "а"
+					1 -> "у"
 					in 2..4 -> "ы"
 					else -> ""
 				}
 			}"
 			MINUTE -> "$value минут${
 				when (value.rem(10)) {
-					1 -> "а"
+					1 -> "у"
 					in 2..4 -> "ы"
 					else -> ""
 				}
