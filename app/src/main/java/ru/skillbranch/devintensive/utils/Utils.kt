@@ -1,5 +1,7 @@
 package ru.skillbranch.devintensive.utils
 
+import android.content.Context
+
 object Utils {
 	private val dictionary: Map<Char, String> = mapOf(
 		'а' to "a",  'б' to "b",  'в' to "v",
@@ -136,4 +138,33 @@ object Utils {
 
 		return if (result.isNotEmpty()) result else null
 	}
+
+	fun convertDpToPx(context: Context, dp: Int): Int =
+		(dp*context.resources.displayMetrics.density + 0.5f).toInt()
+
+	fun convertPxToDp(context: Context, px: Int): Int =
+		(px/context.resources.displayMetrics.density + 0.5f).toInt()
+
+	fun convertSpToPx(context: Context, sp: Int): Int =
+		sp*context.resources.displayMetrics.density.toInt()
+
+	fun isValidateRepository(repository: String): Boolean =
+		repository.isEmpty() || repository.matches(
+			Regex("^(https://){0,1}(www.){0,1}github.com\\/[A-z\\d](?:[A-z\\d]|(_|-)(?=[A-z\\d])){0,256}(/)?\$",RegexOption.IGNORE_CASE))
+				&&
+			!repository.matches(Regex("^.*(" +
+					"\\/enterprise|" +
+					"\\/features|" +
+					"\\/topics|" +
+					"\\/collections|" +
+					"\\/trending|" +
+					"\\/events|" +
+					"\\/marketplace" +
+					"|\\/pricing|" +
+					"\\/nonprofit|" +
+					"\\/customer-stories|" +
+					"\\/security|" +
+					"\\/login|" +
+					"\\/join)\$", RegexOption.IGNORE_CASE)
+			)
 }
